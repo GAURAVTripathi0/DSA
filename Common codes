@@ -1,0 +1,104 @@
+```Accumulator function
+
+defined inside the <numeric> header , used to perform a reduction operation on a range of elements, accumulating a single result.
+
+general synatx example 
+
+#include <numeric>
+#include <vector>
+#include <iostream>
+using namespace std ;
+
+int main() {
+    vector<int> vec = {1, 2, 3, 4, 5};
+    int sum = accumulate(vec.begin(), vec.end(), 0);
+    cout << "Sum: " << sum << endl; // Output: Sum: 15
+    return 0;
+}
+
+ 
+
+
+
+```Given a array , prepare the pairs (i,j) such that i<j and apply some condition.
+
+//use brute force approach for the simplicity 
+  
+  int function ( vector<int>& array){
+       int n = array.size();
+       int ans = 0;
+       for(int i=0 ; i<n ; i++){
+            for(int j = i+1 ; j<n;j++){
+                if ( condition ){
+                 //code to be executed.
+                }
+            }
+        }
+        return ans ;
+    }
+
+
+
+
+//use hashmap for performance 
+
+#include <iostream>
+#include <unordered_map>
+using namespace std;
+
+int countPairs(int nums[], int n, int target) {
+    int count = 0;
+    unordered_map<int, int> hashMap;
+
+    for (int i = 0; i < n; ++i) {
+        for (int j = i + 1; j < n; ++j) {
+            if (nums[i] + nums[j] < target) {
+                ++count;
+            }
+        }
+        hashMap[nums[i]]++;
+    }
+
+    return count;
+}
+
+int main() {
+    int nums[] = {-1, 1, 2, 3, 1};
+    int target = 2;
+    int n = sizeof(nums) / sizeof(nums[0]);
+
+    cout << countPairs(nums, n, target) << endl; // Output: 3
+    return 0;
+}
+
+
+
+
+
+//use accumulater or utility for concise code (complex)
+
+#include <iostream>
+#include <numeric>
+using namespace std;
+
+int countPairs(int nums[], int n, int target) {
+    return accumulate(nums, nums + n, 0, [&](int count, int i) {
+        return count + accumulate(nums + (&i - nums) + 1, nums + n, 0, [&](int inner_count, int j) {
+            return inner_count + (i + j < target);
+        });
+    });
+}
+
+int main() {
+    int nums[] = {-1, 1, 2, 3, 1};
+    int target = 2;
+    int n = sizeof(nums) / sizeof(nums[0]);
+
+    cout << countPairs(nums, n, target) << endl; // Output: 3
+    return 0;
+}
+
+
+
+
+  
