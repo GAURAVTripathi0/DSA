@@ -1,3 +1,5 @@
+//The auto keyword in C++ is used to automatically deduce the type of a variable from its initializer. 
+  This allows for more concise and flexible code.
 ```Accumulator function
 
 defined inside the <numeric> header , used to perform a reduction operation on a range of elements, accumulating a single result.
