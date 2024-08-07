@@ -1,0 +1,60 @@
+``` calculating height of the tree where single node tree has height 0.
+
+
+
+code :
+#include <bits/stdc++.h>
+
+using namespace std;
+
+class Node {
+    public:
+        int data;
+        Node *left;
+        Node *right;
+        Node(int d) {
+            data = d;
+            left = NULL;
+            right = NULL;
+        }
+};
+
+class Solution {
+    public:
+  		Node* insert(Node* root, int data) {
+            if(root == NULL) {
+                return new Node(data);
+            } else {
+                Node* cur;
+                if(data <= root->data) {
+                    cur = insert(root->left, data);
+                    root->left = cur;
+                } else {
+                    cur = insert(root->right, data);
+                    root->right = cur;
+                }
+
+               return root;
+           }
+        }
+/*The tree node has data, left child and right child 
+class Node {
+    int data;
+    Node* left;
+    Node* right;
+    Node(int x) : data(x), left(nullptr), right(nullptr) {}
+};
+
+*/
+//main code 
+    int height(Node* root) {
+        if(root == nullptr){
+            return -1 ;   
+        }
+        int leftheight = height(root->left);
+        int rightheight = height(root->right);
+        return max(leftheight , rightheight) + 1;
+        
+    }
+
+};
