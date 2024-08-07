@@ -1,0 +1,40 @@
+```Given a pointer to the root of a binary tree, print the top view of the binary tree.
+// 
+-queue used to perform bfs.
+-map used to keep track of the nodes values and it prints them in the correct order .
+
+
+code:
+// main part 
+
+void Topview(Node* root){
+    if(!root) return ;
+    map<int,int> treeMap;
+    queue<<Node*,int>> q;
+
+    Node* node = nodeData.first;
+    int hd = nodeData.second;
+
+    while(!q.empty()){
+        auto nodeData = q.front();
+        q.pop();
+        if(treeMap.find(hd)==treeMap.end()){
+            treeMap[hd]= node->data;
+         }
+        if(node->left){
+            q.push({node->left,hd-1});
+         }
+        if(node->right){
+            q.push({node->right,hd+1});
+         }
+     }
+     for(const auto& pair : treeMap){
+         cout<< pair.second<< " ";
+     }
+}
+
+
+
+    
+
+    
