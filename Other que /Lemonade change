@@ -28,7 +28,7 @@ impl Solution {
                     else if five >= 3 { five -= 3; }
                     else { return false; }
                 },
-                _ => {}
+                _ => {}   //syntax is used in pattern matching to handle cases where you don't care about the value being matched or when you want to provide a default case.
             }
         }
         true
