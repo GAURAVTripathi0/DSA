@@ -1,0 +1,55 @@
+problem :
+You are given m arrays, where each array is sorted in ascending order.
+
+You can pick up two integers from two different arrays (each array picks one) and calculate the distance. We define the distance between two integers a and b to be their absolute difference |a - b|.
+
+Return the maximum distance.
+
+
+
+//code in rust 
+
+
+impl Solution {
+    pub fn max_distance(arrays: Vec<Vec<i32>>) -> i32 {
+        let mut global_min = arrays[0][0];
+        let mut global_max = *arrays[0].last().unwrap();
+        let mut result = 0;
+
+        for array in arrays.iter().skip(1) {
+            let current_min = array[0];
+            let current_max = *array.last().unwrap();
+
+            result = result.max((current_max - global_min).abs());
+            result = result.max((global_max - current_min).abs());
+
+            global_min = global_min.min(current_min);
+            global_max = global_max.max(current_max);
+        }
+
+        result
+    }
+}
+
+
+//code in cpp
+
+
+#include <vector>
+#include <algorithm>
+#include <cmath>
+
+using namespace std;
+
+class Solution {
+public:
+    int maxDistance(vector<vector<int>>& arrays) {
+        int globalMin = arrays[0].front(), globalMax = arrays[0].back(), result = 0;
+        for (size_t i = 1; i < arrays.size(); ++i) {
+            result = max({result, abs(arrays[i].back() - globalMin), abs(globalMax - arrays[i].front())});
+            globalMin = min(globalMin, arrays[i].front());
+            globalMax = max(globalMax, arrays[i].back());
+        }
+        return result;
+    }
+};
