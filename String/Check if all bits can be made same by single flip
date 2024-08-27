@@ -1,0 +1,15 @@
+//main code 
+
+bool canMakeAllSame(string str)
+{
+    int zeros = 0, ones = 0;
+ 
+    // Traverse through given string and
+    // count numbers of 0's and 1's
+    for (char ch : str)
+        (ch == '0') ? ++zeros : ++ones;
+ 
+    // Return true if any of the two counts
+    // is 1
+    return (zeros == 1 || ones == 1);
+}
