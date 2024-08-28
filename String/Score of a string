@@ -1,0 +1,32 @@
+prblm : You are given a string s. The score of a string is defined as the sum of the absolute difference between the ASCII values of adjacent characters.
+
+Return the score of s.
+
+
+//rust 
+
+impl Solution {
+    pub fn score_of_string(s: String) -> i32 {
+        s.chars()
+        .zip(s.chars().skip(1))
+        .map(|(c1,c2)| (c1 as i32 - c2 as i32).abs())
+        .sum()
+        
+        
+    }
+}
+
+
+//cpp
+
+class Solution {
+public:
+    int scoreOfString(string s) {
+        int sum=0;
+        for(int i=0; i<s.length()-1;i++){
+            sum += abs(int(s[i])-int(s[i+1]));
+        }
+        return sum;
+        
+    }
+};
